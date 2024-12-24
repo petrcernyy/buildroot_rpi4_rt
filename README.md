@@ -16,3 +16,8 @@ For the chosen kernel version, download the corresponding RT patch from [kernel.
 2. Generate the SHA-256 hash for the Linux kernel `.tar.gz` file using the command:
    ```bash
    sha256sum filename
+
+## Step 5: Create linux.config
+Create linux.config file in board/raspberrypi-rt/linux.config and write the following
+`# enable full preemption
+CONFIG_PREEMPT_RT=y`
