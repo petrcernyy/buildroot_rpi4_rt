@@ -168,8 +168,10 @@ Then install Qt and Boot to Qt software Stack as follows
 Now to develop your application run Qt Creator. Create a new project and 
 select Qt Quick Application. 
 ![image](./images/qt_quickproject.png)
+
 Make sure the Minimal required version is less then the version that is located at Rapberry. 
 ![image](./images/qt_version.png)
+
 Select a Boot2Qt Kit and create project.
 ![image](./images/qt_kit.png)
 
