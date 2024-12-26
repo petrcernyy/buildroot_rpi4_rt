@@ -182,3 +182,19 @@ Then we can build our application and after building copy it to Raspberry over S
 
 Since we want to use `linuxfb` we have to run the application on Raspberry like so
 `./appTest -platform linuxfb`
+
+# Raspberry Pi 5
+For building for Raspberry Pi 5 the steps are the same, only clone the raspberrypi5_defconfig. A difference is in editing resolution in step 9. The Raspberry Pi 5 uses different drivers (KSM) which ingnore the edits in config.txt. In order for them to apply we can revert to old drivers by adding `dtoverlay=vc4-fkms-v3d`. So add the following to the config.txt
+
+```
+dtoverlay=vc4-fkms-v3d
+# uncomment to force a specific HDMI mode (this will force VGA)
+hdmi_group=2
+hdmi_mode=87
+hdmi_cvt 800 480 60 6 0 0 0
+# uncomment to force a HDMI mode rather than DVI. This can make audio work in
+# DMT (computer monitor) modes
+hdmi_drive=1
+```
+
+There is also problem with the Buildroot build for Raspberry Pi 5. The image does not contain overlays folder in boot partion, therefore Raspberry does not boot. In order to fix this we can copy an entire overlays folder to the boot partion of sdcard for example from the official [GitHub of Raspberry](https://github.com/raspberrypi/firmware/tree/master/boot/overlays)
