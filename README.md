@@ -163,15 +163,15 @@ For developement it is easiest to use Qt Boot2Qt toolchain which can cross-compi
 `buildroot/output/host/bin/qmake --version`
 
 Then install Qt and Boot to Qt software Stack as follows
-[image](./images/qt_maintance)
+![image](./images/qt_maintance.png)
 
 Now to develop your application run Qt Creator. Create a new project and 
 select Qt Quick Application. 
-[image](./images/qt_quickproject)
+![image](./images/qt_quickproject.png)
 Make sure the Minimal required version is less then the version that is located at Rapberry. 
-[image](./images/qt_version)
+![image](./images/qt_version.png)
 Select a Boot2Qt Kit and create project.
-[image](./images/qt_kit)
+![image](./images/qt_kit.png)
 
 Newer version of Qt6 use zstd for packaging. Since we do not have this package on Raspberry we can specify to not use this in CMakeLists.txt with the following command
 `set(QT_FEATURE_zstd OFF)`
