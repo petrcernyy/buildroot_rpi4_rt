@@ -12,7 +12,7 @@ Download the patch in .patch.xz format.
 
 Then write the hashes for patch and kernel.\
 `cd buildroot`\
-`vim linux/linux.hash`
+`vim linux/linux.hash`\
 Find the corresponding hash for your patch file in sha256sums.asc, then find the corresponding hash for your kernel file in sha256sums.asc. Copy both lines to linux.hash. 
 
 ## 3. Enabling RT
