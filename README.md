@@ -10,7 +10,7 @@ This guide describes the steps to build custom linux build using [Buildroot](htt
 In order to enable Preempt-RT patch we have to match Linux kernel version and patch version. I find it easiest to download the desired kernel version from [here](https://www.kernel.org/pub/linux/kernel/) and then find its matching patch version [here](https://cdn.kernel.org/pub/linux/kernel/projects/rt/). These version should match as close as possible ideally the versions should be equal.
 Download the patch in .patch.xz format.
 
-Then write the hashes for patch and kernel.
+Then write the hashes for patch and kernel.\
 `cd buildroot`\
 `vim linux/linux.hash`
 Find the corresponding hash for your patch file in sha256sums.asc, then find the corresponding hash for your kernel file in sha256sums.asc. Copy both lines to linux.hash. 
@@ -61,13 +61,13 @@ Enable mdev\
 
 Enable Rpi-firmware + Wi-Fi firmware\
 `Target packages -> Hardware handling -> Firmware -> brcmfmac-sdio-firmware-rpi -> brcmfmac-sdio-firmware-rpi-wifi`\
-`Target packages -> Hardware handling -> Firmware -> rpi-firmware -> rpi 4 (default)`\
+`Target packages -> Hardware handling -> Firmware -> rpi-firmware -> rpi 4 (default)`
 
 DHCP interface\
-`System configuration -> Network interface to configure through DHCP -> wlan0`\
+`System configuration -> Network interface to configure through DHCP -> wlan0`
 
 Enable SSH\
-`Target packages -> Networking applications -> openssh`\
+`Target packages -> Networking applications -> openssh`
 
 Enable DHCP\
 `Target packages -> Networking applications -> dhcp (ISC) -> dhcp server -> Enable delayed ACK feature`\
@@ -75,7 +75,7 @@ Enable DHCP\
 `Target packages -> Networking applications -> dhcp (ISC) -> dhcp relay`\
 `Target packages -> Networking applications -> dhcp (ISC) -> dhcp client`\
 `Target packages -> Networking applications -> dhcpd`\
-`Target packages -> Networking applications -> dhcpdump`\
+`Target packages -> Networking applications -> dhcpdump`
 
 Enable WPA_SUPPLICANT\
 `Target packages -> Networking applications -> wpa_supplicant -> Enable nl80211 support`\
@@ -84,7 +84,7 @@ Enable WPA_SUPPLICANT\
 `Target packages -> Networking applications -> wpa_supplicant -> Enable WPA3 support`\
 `Target packages -> Networking applications -> wpa_supplicant -> Install wpa_cli binary`\
 `Target packages -> Networking applications -> wpa_supplicant -> Install wpa_client shared library`\
-`Target packages -> Networking applications -> wpa_supplicant -> Install wpa_passphrase binary`\
+`Target packages -> Networking applications -> wpa_supplicant -> Install wpa_passphrase binary`
 
 Now Wi-Fi should be enabled.
 
@@ -92,7 +92,7 @@ Now Wi-Fi should be enabled.
 We will use Qt6 with direct framebuffer `linuxfb`
 
 First enable fonts text will get displayed.\
-`Target packages -> Fonts, cursors, icons, sounds and themes -> DejaVu fonts`\
+`Target packages -> Fonts, cursors, icons, sounds and themes -> DejaVu fonts`
 
 Then enable Qt6\
 `Target packages -> Graphics libraries and applications -> Qt6 -> qt6base`\
@@ -104,17 +104,17 @@ Then enable Qt6\
 `Target packages -> Graphics libraries and applications -> Qt6 -> qt6base -> network module`\
 `Target packages -> Graphics libraries and applications -> Qt6 -> qt6declarative`\
 `Target packages -> Graphics libraries and applications -> Qt6 -> qt6declarative -> quick module`\
-`Target packages -> Graphics libraries and applications -> Qt6 -> qt6svg`\\
+`Target packages -> Graphics libraries and applications -> Qt6 -> qt6svg`
 
 Now Qt6 should be enabled.
 
 ## 7. Final modifications
 Now everything should be ready. Before we make the build we should set the root password and enable vim or nano support in:\
-`Target packages -> Text editors and viewers -> vim`\
+`Target packages -> Text editors and viewers -> vim`
 
 ## 8. Build
 Now save the config and proceed to build. This will take approximatelly 2-3 hours.\
-`make`\
+`make`
 
 After the build is finished write the image in `buildroot/output/image`
 to your sdcard. You can use for example [balenaEtcher](https://etcher.balena.io/)
@@ -150,10 +150,10 @@ You should be able to see your IP address.
 
 ## 11. SSH root login
 OpenSSH defaultly forbids root login over SSH. So we have to fix this.\
-`vim /etc/ssh/sshd_config`
+`vim /etc/ssh/sshd_config`\
 Locate the lines `PasswordAuthentication yes` and ensure it is not commented and the option is set to `yes`.  Then locate `PermitRootLogin prohibit-password` and ensure it is not commented and change `prohibit-password`to `yes`.
 Save the file and now we have to restart the sshd daemon.\
-`killall sshd`
+`killall sshd`\
 `/usr/sbin/sshd`
 
 Now we can test the SSH connection.
