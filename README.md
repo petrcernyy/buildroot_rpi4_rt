@@ -1,4 +1,4 @@
-# Raspberry Pi custom build
+# Raspberry Pi - RT, Wi-Fi, Qt6 build
 This guide describes the steps to build custom linux build using [Buildroot](https://buildroot.org/)  for Raspberry Pi 4. The build focuses mainly on enabling Preempt-RT patch to run Linux in real-time, then Wi-Fi is enabled and using Qt6 to creating custom Qt applications.
 
 ## 1. Download buildroot
