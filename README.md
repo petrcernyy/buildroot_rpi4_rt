@@ -159,4 +159,24 @@ Save the file and now we have to restart the sshd daemon.\
 Now we can test the SSH connection.
 
 ## 12. Qt developement
-For developement it is easiest to use Qt Boot2Qt toolchain which can cross-compile from PC to Raspberry. Ensure you have the same version of Qt toolchain as you Qt on Raspberry.
+For developement it is easiest to use Qt Boot2Qt toolchain which can cross-compile from PC to Raspberry. Ensure you have the same version of Qt toolchain as your Qt on Raspberry. You can verify the version on your host machine
+`buildroot/output/host/bin/qmake --version`
+
+Then install Qt and Boot to Qt software Stack as follows
+[image](./images/qt_maintance)
+
+Now to develop your application run Qt Creator. Create a new project and 
+select Qt Quick Application. 
+[image](./images/qt_quickproject)
+Make sure the Minimal required version is less then the version that is located at Rapberry. 
+[image](./images/qt_version)
+Select a Boot2Qt Kit and create project.
+[image](./images/qt_kit)
+
+Newer version of Qt6 use zstd for packaging. Since we do not have this package on Raspberry we can specify to not use this in CMakeLists.txt with the following command
+`set(QT_FEATURE_zstd OFF)`
+
+Then we can build our application and after building copy it to Raspberry over SSH using `scp`.
+
+Since we want to use `linuxfb` we have to run the application on Raspberry like so
+`./appTest -platform linuxfb`
